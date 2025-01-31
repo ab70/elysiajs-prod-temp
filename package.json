@@ -6,11 +6,13 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "elysia": "latest",
     "mongoose": "^8.9.5"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "@types/bcryptjs": "^2.4.2",
   },
   "module": "src/index.js"
 }

@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import authController from "../controllers/authController";
+import authController from "../controllers/authControllers/authController";
 import { checkUser } from "../middlewares/authMiddleware";
 
 const authRoute = (app: Elysia) => {

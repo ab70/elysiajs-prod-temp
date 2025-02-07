@@ -1,6 +1,7 @@
 import { type Context } from "elysia"
 import { signupUser_func } from "./functions/signUp";
 import { IUser } from "../../models/User";
+import { signinUser_func } from "./functions/signIn";
 function authController() {
     return {
 
@@ -28,11 +29,21 @@ function authController() {
         // signin
         async UserSignIn(context: Context) {
             try {
-                const reqBody = context.body as Partial<IUser>;
+                const reqBody:Partial<IUser> = context.body as Partial<IUser>;
                 console.log("user route reached", context.store);
-                const result = await signupUser_func(reqBody);
+                const result = await signinUser_func(reqBody);
 
                 if (result.success) {
+                    context.cookie.auth_token.set({
+                        value: result.data,
+                        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+                        httpOnly: true,
+                        sameSite: "lax",
+                        secure: true,
+                        path: "/",
+                        maxAge: 24 * 60 * 60 * 1000,
+
+                    })
                     context.set.status = 200;
                     return { success: true, message: "Route cpmpleted", data: result.data };
                 }

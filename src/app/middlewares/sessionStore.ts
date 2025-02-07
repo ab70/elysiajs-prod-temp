@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Session } from '../models/Session';
 
 // Function to create a session
-export const createSession = async (user_Id: string, sessionData: object) => {
+export const createSession = async (user_Id: any, sessionData: object) => {
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // Expires in 24 hours
 
   const session = await Session.findOneAndUpdate(

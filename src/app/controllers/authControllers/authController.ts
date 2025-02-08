@@ -12,14 +12,8 @@ function authController() {
 
                 console.log("user route reached", context.store);
                 const result = await signupUser_func(reqBody);
-
-                if (result.success) {
-                    context.set.status = 200;
-                    return { success: true, message: "Route cpmpleted", data: result.data };
-                }
-
-                context.set.status = 200;
-                return { success: false, message: "Route cpmpleted" }
+                context.set.status = result.success ? 200 : 400;
+                return result;
             } catch (error: any) {
                 console.log(error);
                 context.set.status = 500;

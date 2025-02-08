@@ -22,7 +22,7 @@ export async function signupUser_func(data: IUser) {
         });
         const savedUser = await newUser.save();
         await savedUser.save();
-        return { success: true, data: savedUser };
+        return { success: true, message: "User created successfully.", data: savedUser };
     } catch (error: any) {
         return { success: false, message: error.message };
     }
